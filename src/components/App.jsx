@@ -14,35 +14,20 @@ export class App extends Component {
   };
 
   changeStatistics = event => {
-    const feedbackType = event.target.name;
+    const { name } = event.currentTarget;
     this.setState(prevState => ({
-      [feedbackType]: (prevState[feedbackType] += 1),
+      [name]: prevState[name] + 1,
     }));
-    // if (buttonName === 'good') {
-    //   this.setState(prevState => ({
-    //     good: prevState.good + 1,
-    //   }));
-    // }
-    // if (buttonName === 'neutral') {
-    //   this.setState(prevState => ({
-    //     neutral: prevState.neutral + 1,
-    //   }));
-    // }
-    // if (buttonName === 'bad') {
-    //   this.setState(prevState => ({
-    //     bad: prevState.bad + 1,
-    //   }));
-    // }
   };
-  countTotalFeedback = () => {
-    const values = Object.values(this.state);
+
+  countTotalFeedback = values => {
     return values.reduce((prevValue, number) => prevValue + number, 0);
   };
 
   countPositiveFeedbackPercentage = total => {
     if (total > 0) {
-      const totalPositive = this.state.good;
-      return Math.round((totalPositive / total) * 100);
+      const { good } = this.state;
+      return Math.round((good / total) * 100);
     }
     return;
   };
@@ -52,7 +37,7 @@ export class App extends Component {
     const options = Object.keys(this.state);
     const values = Object.values(this.state);
     const noFeedbacks = values.every(value => value === 0);
-    const totalFeedbacks = this.countTotalFeedback();
+    const totalFeedbacks = this.countTotalFeedback(values);
     const totalPositivePercentage =
       this.countPositiveFeedbackPercentage(totalFeedbacks);
 
