@@ -14,6 +14,5 @@ export const FeedbackItem = styled.button`
     background-color: #f4d03f;
     color: #34495e;
     scale: 1.1;
-    fot-size: 18px;
   }
 `;

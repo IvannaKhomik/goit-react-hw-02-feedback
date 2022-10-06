@@ -29,7 +29,6 @@ export class App extends Component {
       const { good } = this.state;
       return Math.round((good / total) * 100);
     }
-    return;
   };
 
   render() {
